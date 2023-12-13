@@ -68,12 +68,15 @@ def get_visible_cones(cones: np.ndarray((_n,3)), pose: np.ndarray((3,)), p: dict
     max_dist = p['max_dist']
     fov_rad = p['fov_deg'] * np.pi / 180
 
+    I = np.arange(len(cones)).astype(int)
 
     cones = to_m_frame(cones, pose)
     cones[:, 1] = np.arctan2(np.sin(cones[:, 1]), np.cos(cones[:, 1]))
-    cones = cones[(0 < cones[:, 0])*(cones[:, 0] < max_dist)*(cones[:, 1] < fov_rad / 2)*(cones[:, 1] > -fov_rad / 2)]
+    mask = (0 < cones[:, 0])*(cones[:, 0] < max_dist)*(cones[:, 1] < fov_rad / 2)*(cones[:, 1] > -fov_rad / 2)
+    cones = cones[mask]
+    I = I[mask]
     cones = to_g_frame(cones, pose)
-    return cones
+    return cones, list(I)
 
 def homogenize(cones: np.ndarray((_n,2))) -> np.ndarray((_n,3)):
     """ Homogenize coordinates """
