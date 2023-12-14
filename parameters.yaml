@@ -4,9 +4,16 @@ fov_deg: 150
 measurement_noise_fov_deg: 2
 max_cone_dist: 5
 min_cone_dist: 3
+false_negative_rate: 0.05
+false_positive_rate: 0.05
+
 N: 1000
 M: 100
 W: 30
 H: 30
-false_negative_rate: 0.05
-false_positive_rate: 0.05
+
+gN: 1000
+gM: 100
+gW: 30
+gH: 30
+gRes: 0.5

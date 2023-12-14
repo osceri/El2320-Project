@@ -1,2 +1,4 @@
 data.npz
 network.pth
+global_data.npz
+global_network.pth
